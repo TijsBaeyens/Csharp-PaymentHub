@@ -1,7 +1,8 @@
+using WebAPI1.Controllers.Models.Payment;
+using WebAPI1.Controllers.Models.Webshop;
 
-using WebAPI1.Controllers.Models;
-
-namespace WebAPI1 {
+namespace WebAPI1
+{
     public class Program {
         public static void Main(string[] args) {
             var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ namespace WebAPI1 {
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddSingleton<IPaymentRepo, PaymentRepo>();
+            builder.Services.AddSingleton<IWebshopRepo, WebshopRepo>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

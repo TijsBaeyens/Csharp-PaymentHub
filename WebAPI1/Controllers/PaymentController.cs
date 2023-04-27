@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Metrics;
-using WebAPI1.Controllers.Models;
+using WebAPI1.Controllers.Models.Payment;
+using WebAPI1.Controllers.Models.Webshop;
 
-namespace WebAPI1.Controllers {
+namespace WebAPI1.Controllers
+{
     [Route("api/[controller]")]
     [ApiController]
     public class PaymentController : ControllerBase {
@@ -43,7 +45,7 @@ namespace WebAPI1.Controllers {
         public IActionResult Get(int id) {
             try {
                 return Ok(_paymentRepo.GetPayment(id));
-            } catch (PaymentException ex){
+            } catch (WebshopException ex){
                 return NotFound();
             }
         }

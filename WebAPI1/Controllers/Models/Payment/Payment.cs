@@ -1,5 +1,7 @@
-﻿namespace WebAPI1.Controllers.Models {
-    public class Payment {
+﻿namespace WebAPI1.Controllers.Models.Payment
+{
+    public class Payment
+    {
         public int Id { get; set; }
         public decimal Bedrag { get; set; }
         public int BegunstigeWebshopId { get; set; }
@@ -8,7 +10,8 @@
         public DateTime Datum { get; set; }
 
 
-        public Payment(int id, decimal bedrag, int begunstigeWebshopId, int userId, DateTime datum) {
+        public Payment(int id, decimal bedrag, int begunstigeWebshopId, int userId, DateTime datum)
+        {
             Id = id;
             Bedrag = bedrag;
             BegunstigeWebshopId = begunstigeWebshopId;
@@ -18,7 +21,8 @@
 
         }
 
-        public Payment(decimal bedrag, int begunstigeWebshopId, int userId) {
+        public Payment(decimal bedrag, int begunstigeWebshopId, int userId)
+        {
             Bedrag = bedrag;
             BegunstigeWebshopId = begunstigeWebshopId;
             UserId = userId;
@@ -26,7 +30,8 @@
             Datum = DateTime.Now;
         }
 
-        public Payment() {
+        public Payment()
+        {
         }
     }
 }
