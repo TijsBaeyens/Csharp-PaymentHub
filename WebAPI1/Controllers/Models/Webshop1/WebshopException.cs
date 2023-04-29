@@ -1,4 +1,4 @@
-﻿namespace WebAPI1.Controllers.Models.Webshop
+﻿namespace WebAPI1.Controllers.Models.Webshop1
 {
     public class WebshopException : Exception
     {

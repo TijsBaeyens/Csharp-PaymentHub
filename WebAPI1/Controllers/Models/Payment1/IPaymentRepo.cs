@@ -1,5 +1,7 @@
 ﻿
-namespace WebAPI1.Controllers.Models.Payment
+using DomainLayer.Objects;
+
+namespace WebAPI1.Controllers.Models.Payment1
 {
     public interface IPaymentRepo
     {

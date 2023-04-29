@@ -1,25 +1,24 @@
-﻿using System.Diagnostics.Metrics;
+﻿using PersistenceLayer;
+using System.Diagnostics.Metrics;
+using DomainLayer;
+using DomainLayer.Objects;
+using DomainLayer.Interfaces;
 
-namespace WebAPI1.Controllers.Models.Payment
+namespace WebAPI1.Controllers.Models.Payment1
 {
     public class PaymentRepo : IPaymentRepo
     {
-        private readonly Dictionary<int, Payment> _data = new();
+        private PaymentHubRepo _repo;
 
         public PaymentRepo()
         {
-            _data.Add(1, new Payment(1, 90.32m, 1, 1, DateTime.Now));
-            _data.Add(2, new Payment(2, 91.32m, 2, 2, DateTime.Now));
-            _data.Add(3, new Payment(3, 92.32m, 3, 3, DateTime.Now));
-            _data.Add(4, new Payment(4, 93.32m, 4, 4, DateTime.Now));
-            _data.Add(5, new Payment(5, 94.32m, 5, 5, DateTime.Now));
         }
 
         public void AddPayment(Payment payment)
         {
-            if (!_data.ContainsKey(payment.Id))
+            if (_repo.GetPayments().Contains(payment))
             {
-                _data.Add(payment.Id, payment);
+                _repo.AddPayment(payment);
             }
             else
             {
@@ -29,14 +28,14 @@ namespace WebAPI1.Controllers.Models.Payment
 
         public IEnumerable<Payment> GetAll()
         {
-            return _data.Values;
+            return _repo.GetPayments();
         }
 
         public Payment GetPayment(int id)
         {
-            if (_data.ContainsKey(id))
+            if (_repo.GetPaymentById(id) != null)
             {
-                return _data[id];
+                return _repo.GetPaymentById(id);
             }
             else
             {
@@ -46,9 +45,9 @@ namespace WebAPI1.Controllers.Models.Payment
 
         public void RemovePayment(Payment Payment)
         {
-            if (_data.ContainsKey(Payment.Id))
+            if (_repo.GetPaymentById(Payment.Id) != null)
             {
-                _data.Remove(Payment.Id);
+                _repo.DeletePayment(Payment.Id);
             }
             else
             {
@@ -58,9 +57,9 @@ namespace WebAPI1.Controllers.Models.Payment
 
         public void UpdatePayment(Payment Payment)
         {
-            if (_data.ContainsKey(Payment.Id))
+            if (_repo.GetPaymentById(Payment.Id) != null)
             {
-                _data[Payment.Id] = Payment;
+                _repo.UpdatePayment(Payment);
             }
             else
             {
@@ -69,7 +68,7 @@ namespace WebAPI1.Controllers.Models.Payment
         }
         public IEnumerable<Payment> GetAll(string bedrag)
         {
-            return _data.Values.Where(p => p.Bedrag.ToString().Contains(bedrag));
+            return _repo.GetPayments().Where(p => p.Bedrag.ToString().Contains(bedrag));
         }
     }
 }

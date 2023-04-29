@@ -172,7 +172,7 @@ namespace PersistenceLayer {
                     connection.Close();
                 }
             } catch (Exception ex) {
-                throw new Exception("AddWebshop", ex);
+                throw new Exception("DeleteBank", ex);
             }
         }
 
@@ -513,7 +513,6 @@ namespace PersistenceLayer {
             } catch (Exception ex) {
                 throw new Exception("AddPayment", ex);
             }
-
         }
 
         // GET ALL PAYMENTS
