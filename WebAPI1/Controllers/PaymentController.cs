@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DomainLayer.Objects;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Metrics;
-using WebAPI1.Controllers.Models.Payment;
-using WebAPI1.Controllers.Models.Webshop;
+using WebAPI1.Controllers.Models.Payment1;
+using WebAPI1.Controllers.Models.Webshop1;
 
 namespace WebAPI1.Controllers
 {
@@ -62,7 +63,7 @@ namespace WebAPI1.Controllers
         }
         */
             // POST: api/Payment
-            [HttpPost]
+        [HttpPost]
         public void Post([FromBody] Payment payment) {
             _paymentRepo.AddPayment(payment);
         }

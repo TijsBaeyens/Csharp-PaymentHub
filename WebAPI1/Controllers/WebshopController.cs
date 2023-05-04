@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DomainLayer.Objects;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI1.Controllers.Models.Payment;
-using WebAPI1.Controllers.Models.Webshop;
+using WebAPI1.Controllers.Models.Payment1;
+using WebAPI1.Controllers.Models.Webshop1;
 
 namespace WebAPI1.Controllers {
     [Route("api/[controller]")]
@@ -10,7 +11,7 @@ namespace WebAPI1.Controllers {
         private IWebshopRepo _webshopRepo;
         private IPaymentRepo _paymentRepo;
 
-        public WebshopController(WebshopRepo wr, IPaymentRepo paymentRepo) {
+        public WebshopController(IWebshopRepo wr, IPaymentRepo paymentRepo) {
             _webshopRepo = wr;
             _paymentRepo = paymentRepo;
         }
@@ -82,6 +83,43 @@ namespace WebAPI1.Controllers {
                 return Ok(_paymentRepo.GetPayment(id));
             } catch (WebshopException ex) {
                 return NotFound();
+            }
+        }
+
+        // PUT: api/payment/
+        [HttpPut("payment")]
+        public IActionResult PutPayment([FromBody] Payment value) {
+            try {
+                _paymentRepo.UpdatePayment(value);
+                return Ok();
+            } catch (WebshopException ex) {
+                return BadRequest();
+            }
+        }
+
+
+        // SESSION
+
+        // Start session
+        [HttpPost("startSession")]
+        public IActionResult StartSession([FromBody] Webshop value) {
+            try {
+                Session s = new Session();
+                s.WebshopId = value.Id;
+                return Ok(s);
+            } catch (WebshopException ex) {
+                return BadRequest();
+            }
+        }
+
+        // End session
+        [HttpDelete("endSession")]
+        public IActionResult EndSession() {
+            try {
+                Session s = null;
+                return Ok();
+            } catch (WebshopException ex) {
+                return BadRequest();
             }
         }
     }

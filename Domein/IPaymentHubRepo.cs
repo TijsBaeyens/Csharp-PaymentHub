@@ -42,7 +42,7 @@ namespace DomainLayer {
         // PAYMENT SECTION
 
         public void AddPayment(Payment payment);
-        public List<Payment> GetPayments();
+        public List<Payment> GetAllPayments();
         public Payment GetPaymentById(int id);
         public List<Payment> GetPaymentsByUserId(int userId);
         public List<Payment> GetPaymentsByWebshopId(int webshopId);

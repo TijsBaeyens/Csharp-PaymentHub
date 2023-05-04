@@ -516,7 +516,7 @@ namespace PersistenceLayer {
         }
 
         // GET ALL PAYMENTS
-        public List<Payment> GetPayments() {
+        public List<Payment> GetAllPayments() {
             try {
                 List<Payment> payments = new List<Payment>();
                 string sql = "SELECT * FROM Payment";
@@ -531,7 +531,11 @@ namespace PersistenceLayer {
                         payment.Bedrag = (decimal)dataReader["Bedrag"];
                         payment.BegunstigeWebshopId = (int)dataReader["BegunstigdeWebshopId"];
                         payment.UserId = (int)dataReader["UserId"];
-                        payment.Betaald = (bool)dataReader["Betaald"];
+                        if((string)dataReader["Betaald"] == "1") {
+                            payment.Betaald = true;
+                        } else {
+                            payment.Betaald = false;
+                        }
                         payment.Datum = (DateTime)dataReader["Datum"];
                         payments.Add(payment);
                     }

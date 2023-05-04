@@ -5,6 +5,12 @@ namespace WebAPI1.Controllers.Models.Webshop1 {
     public class WebshopRepo : IWebshopRepo {
 
         private PaymentHubRepo _repo;
+
+        public WebshopRepo() {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["ADOconnSQL"].ConnectionString;
+            _repo = new PaymentHubRepo(conn);
+        }
+
         public void AddWebshop(Webshop webshop) {
             _repo.AddWebshop(webshop);
         }

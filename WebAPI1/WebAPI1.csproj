@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="App.config" />
+    <Content Remove="Controllers\Models\Payment1\App.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.10.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
@@ -22,6 +27,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Models\User\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Controllers\Models\Payment1\App.config" />
   </ItemGroup>
 
 </Project>

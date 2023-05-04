@@ -9,14 +9,16 @@ namespace WebAPI1.Controllers.Models.Payment1
     public class PaymentRepo : IPaymentRepo
     {
         private PaymentHubRepo _repo;
-
+        
         public PaymentRepo()
         {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["ADOconnSQL"].ConnectionString;
+            _repo = new PaymentHubRepo(conn);
         }
 
         public void AddPayment(Payment payment)
         {
-            if (_repo.GetPayments().Contains(payment))
+            if (!_repo.GetAllPayments().Contains(payment))
             {
                 _repo.AddPayment(payment);
             }
@@ -28,7 +30,7 @@ namespace WebAPI1.Controllers.Models.Payment1
 
         public IEnumerable<Payment> GetAll()
         {
-            return _repo.GetPayments();
+            return _repo.GetAllPayments();
         }
 
         public Payment GetPayment(int id)
@@ -68,7 +70,7 @@ namespace WebAPI1.Controllers.Models.Payment1
         }
         public IEnumerable<Payment> GetAll(string bedrag)
         {
-            return _repo.GetPayments().Where(p => p.Bedrag.ToString().Contains(bedrag));
+            return _repo.GetAllPayments().Where(p => p.Bedrag.ToString().Contains(bedrag));
         }
     }
 }
