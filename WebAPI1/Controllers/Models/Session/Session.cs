@@ -12,7 +12,7 @@ public class Session {
 
     public Session() {
         Id = Guid.NewGuid();
-        _timer = new System.Timers.Timer(30000);
+        _timer = new System.Timers.Timer(300000);
         _timer.Elapsed += OnTimerElapsed;
         _timer.AutoReset = false;
         _timer.Start();
